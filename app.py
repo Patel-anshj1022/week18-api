@@ -11,11 +11,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 db.init_app(app)
 
-# ✅ Create DB tables before first request
 with app.app_context():
     db.create_all()
 
-# ✅ Add endpoints
 api.add_resource(BookList, '/books')
 api.add_resource(BookResource, '/books/<int:book_id>')
 api.add_resource(AuthorList, '/authors')
